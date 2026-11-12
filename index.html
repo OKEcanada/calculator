@@ -14,7 +14,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Geist+Mono:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   // Defensive: unregister any stale service workers from earlier builds (some users
   // were stuck on a cached version in Chrome only). Safe no-op if none exist.
@@ -4630,8 +4629,8 @@
 <script>
 // Public browser config. The anon key is safe to publish; never put the service-role key here.
 window.MONTE_SUPABASE = window.MONTE_SUPABASE || {
-  url: "https://wwtaadvzonnbvyhottlv.supabase.co",
-  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3dGFhZHZ6b25uYnZ5aG90dGx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwNTkxNDAsImV4cCI6MjA5NDYzNTE0MH0.UciCmDWB3Mq7SsPbXqOXvai6cisqRiGC9gQkxmP2gSA"
+  url: "https://br-mute-term-bd4vnlub-okeapi.compute.c-8.us-east-2.aws.neon.tech", // Neon (okeapi function) — moved off Supabase 2026-11-12
+  anonKey: "public" // Neon needs no browser key; kept non-empty for legacy checks
 };
 window.MONTE_CONFIG = window.MONTE_CONFIG || {
   shareBase: "https://quote.onekindexpress.com/",
@@ -4825,7 +4824,7 @@ function emailNoticeFailureText(emailNotice) {
   const raw = failures.map(f => f && (f.error || f.text || f.status)).filter(Boolean).join(' | ');
   if (!raw) return '';
   if (/No email provider configured|RESEND_API_KEY|BREVO_API_KEY/i.test(raw)) {
-    return 'email provider is not configured in Supabase';
+    return 'email provider is not configured on the server';
   }
   if (/401|403|JWT|Unauthorized|forbidden/i.test(raw)) return 'email function authorization failed';
   if (/404|not found/i.test(raw)) return 'email function is not deployed';
